@@ -45,18 +45,28 @@
 ## Postman
 
 - **POSTMAN COLLECTION**
-
-    [orderApiV1.postman_collection.zip](https://github.com/user-attachments/files/16920299/orderApiV1.postman_collection.zip)
+  
+    [orderApiV1.postman_collection.zip](https://github.com/user-attachments/files/16920328/orderApiV1.postman_collection.zip)
 
 - **API 엔드포인트**
 
-    - **Health API**: [localhost:8080/api/status/health](http://localhost:8080/api/status/health)
-    - **단건등록 API**: [localhost:8080/api/v1/orders](http://localhost:8080/api/v1/orders)
-    - **엑셀 다건 등록 API**: [localhost:8080/api/v1/orders/excel](http://localhost:8080/api/v1/orders/excel)
+    - **Health API**: 
+      ```plaintext
+      http://localhost:8080/api/status/health
+      ```
+    - **단건등록 API**: 
+      ```plaintext
+      http://localhost:8080/api/v1/orders
+      ```
+    - **엑셀 다건 등록 API**: 
+      ```plaintext
+      http://localhost:8080/api/v1/orders/excel
+      ```
         - **기본 엑셀 파일**: [excel_order.xlsx](https://github.com/user-attachments/files/16920290/excel_order.xlsx)
         - **빈값 존재 엑셀파일**: [excel_order_fail_empty.xlsx](https://github.com/user-attachments/files/16920291/excel_order_fail_empty.xlsx)
         - **천건 등록 엑셀파일**: [excel_order_1000.xlsx](https://github.com/user-attachments/files/16920292/excel_order_1000.xlsx)
         - **천건 등록 재고부족 엑셀파일**: [excel_order_1000_fail_stock.xlsx](https://github.com/user-attachments/files/16920293/excel_order_1000_fail_stock.xlsx)
+     
      
 ## 필터로그확인
 ```
