@@ -5,7 +5,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.jyj.order.entity.Item;
 import org.jyj.order.entity.OutOrder;
 import org.jyj.order.entity.OutOrderItem;
-import org.jyj.order.entity.OutOrderStatus;
 import org.jyj.order.entity.enums.OrderStatusType;
 import org.jyj.order.entity.enums.OrderType;
 import org.jyj.order.request.OrderBasicInfo;
@@ -14,7 +13,6 @@ import org.jyj.order.response.OrderSaveResponseDto;
 import org.jyj.order.respository.interf.ItemRepository;
 import org.jyj.order.respository.interf.OutOrderItemRepository;
 import org.jyj.order.respository.interf.OutOrderRepository;
-import org.jyj.order.respository.interf.OutOrderStatusRepository;
 import org.jyj.order.service.interf.OrderService;
 import org.jyj.order.service.interf.OrderServiceLock;
 import org.springframework.stereotype.Service;
@@ -28,7 +26,6 @@ import java.util.List;
 public class OrderServiceImpl implements OrderService {
     private final OutOrderRepository outOrderRepository;
     private final OutOrderItemRepository outOrderItemRepository;
-    private final OutOrderStatusRepository outOrderStatusRepository;
     private final ItemRepository itemRepository;
     private final OrderServiceLock orderServiceLock;
 
@@ -37,7 +34,6 @@ public class OrderServiceImpl implements OrderService {
     public OrderSaveResponseDto saveOrders(OrderBasicInfo orderBasicInfo, List<OrderItemInfo> orderItemInfoList) {
         OutOrder savedOrder = processOutOrder(orderBasicInfo);
         processOutOrderItem(orderItemInfoList, savedOrder);
-        processOutOrderStatus(savedOrder);
 
         return getOrderSaveResponseDto(savedOrder);
 
@@ -48,15 +44,6 @@ public class OrderServiceImpl implements OrderService {
                 .orderNo(savedOrder.getOrderNo())
                 .build();
         return orderSaveResponseDto;
-    }
-
-    private void processOutOrderStatus(OutOrder savedOrder) {
-        OutOrderStatus outOrderStatus = OutOrderStatus.builder()
-                .orderNo(savedOrder.getOrderNo())
-                .status(OrderStatusType.REQUEST.getKey())
-                .build();
-
-        outOrderStatusRepository.save(outOrderStatus);
     }
 
     private void processOutOrderItem(List<OrderItemInfo> orderItemInfoList, OutOrder savedOrder) {
